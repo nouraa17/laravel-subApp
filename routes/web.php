@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Auth::routes(['verify' => true]);
 
@@ -40,6 +41,15 @@ Route::get('/', function () {
 
 // Auth::routes();
 
+//Task 14
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('guarderbase', [Controller::class, 'guarderbase'])->middleware('verified')->name('guarder');
@@ -51,3 +61,5 @@ Route::get('guarderservice', [Controller::class, 'guarderservice'])->middleware(
 Route::get('guarderguards', [Controller::class, 'guarderguards'])->middleware('verified')->name('guards');
 
 Route::get('guardercontact', [Controller::class, 'guardercontact'])->middleware('verified')->name('contact');
+    }
+);

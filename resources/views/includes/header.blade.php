@@ -46,6 +46,23 @@
 
                     <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                         <ul class="navbar-nav">
+
+                        <li class="nav-item {{
+                                            LaravelLocalization::getCurrentLocale()=='en' ? 'active' : '' }}" >
+                                <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+                                🌐 English
+                                </a>
+                            </li>
+                            <li class="nav-item {{
+                                            LaravelLocalization::getCurrentLocale()=='ar' ? 'active' : '' }}" >
+                                <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
+                                🌐 عربي                                  
+
+                                </a>
+                            </li>
+
+                            <li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </li>
+
                             <li class="nav-item {{ request()->routeIs('guarder') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('guarder') }}">Home <span
                                         class="sr-only">(current)</span></a>
@@ -60,8 +77,9 @@
                                 <a class="nav-link" href="{{ route('guards') }}">Guards</a>
                             </li>
                             <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('contact') }}">Contact us</a>
+                                <a class="nav-link" href="{{ route('contact') }}">{{__('messages.pageTitle')}}</a>
                             </li>
+
                         </ul>
                     </div>
                 </nav>
@@ -69,3 +87,8 @@
         </div>
     </header>
     <!-- end header section -->
+    <script>
+        function changeLanguage(li) {
+            window.location.href = select.value;
+        }
+    </script>
